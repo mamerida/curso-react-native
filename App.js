@@ -2,17 +2,22 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 const Texto = (props)=>{
-    const {texto} = props;
+    const {children} = props;
   return(
-    <Text> {texto}</Text>
+    <Text> {children}</Text>
     )
   
 }
 export default function App() {
   return (
     <View style={styles.container}>
-      <Texto texto={'Hola Mundo'}/>
-      <Texto texto={'Adios Mundo'}/>
+      <Texto>
+        Hola Mundo
+      </Texto>
+      {/* Al usar la propiedad children todo lo colocado entre las etiquetas se pasara como parametro*/}
+      <Texto>
+        Chao Mundo
+      </Texto>
       <StatusBar style="auto" />
     </View>
   );

@@ -11,7 +11,7 @@ const Texto = ()=>{
     //en este caso se ejecuta este codigo que cambia el texto mostrado mediante el useState declarado mas arriba
     //amplie la funcionalidad de la funcion actualizar texto ahora lee el valor de Texto y dependiendo de eso cambia de una forma a otra
     const actualizarTexto = () =>{
-      if(Texto== "hola mundo"){
+      if(Texto== "Hola mundo"){
         setTexto("Chao mundo cruel :C");
       }else{
         setTexto("Hola mundo");
@@ -21,7 +21,9 @@ const Texto = ()=>{
     return(
         // La propiedad en press al momento de presionar el componente realiza una accion 
         //utilizo siempre componente Text para poder mostrar texto en pantalla 
-      <Text style={{fontSize : 24}} onPress={actualizarTexto}>{Texto}</Text>
+        // style={{fontSize : 24}} una forma de definir estilos pero es mejor declararlo al final con el style
+        // se usa {} y no {{}} por tratarse de una propiedad y no de un objeto
+      <Text style={styles.text} onPress={actualizarTexto}>{Texto}</Text>
     )
   
 }
@@ -42,5 +44,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  // creo el style text para poder llamarlo en mis componentes es como css dentro del componente
+  text:{
+    color:'red',
+    fontSize:24,
+    // la propiedad css seria font-size pero en reactNative se cambio el - por camel case 
+    // 'font-size':24,
   },
 });

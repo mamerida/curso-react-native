@@ -44,9 +44,13 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    //indica la direccion en la cual se muestra el contenido row row-reverse column colum-reverse
+    flexDirection:'column',
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    //esta propiedad alinea el contenido en el eje opuesto al declarado  flex-start flex-end center stretch (alto y ancho variable usa todo el contenido disponible)
+    alignItems: 'flex-start',
+    //justifyContent alinea contenido del elemento con el contenido flex-start flex-end center space-between space-around space-evenly
+    justifyContent: 'space-evenly',
   },
   // creo el style text para poder llamarlo en mis componentes es como css dentro del componente
   text:{
@@ -59,15 +63,15 @@ const styles = StyleSheet.create({
     // 'font-size':24,
   },
   red:{
-    flex:1,
+    // flex:1,
     backgroundColor:'red',
   },
   green:{
-    flex:1,
+    // flex:1,
     backgroundColor:'green',
   },
   blue:{
-    flex:1,
+    // flex:1,
     backgroundColor:'blue',
   },
 });

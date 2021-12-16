@@ -1,29 +1,74 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions } from 'react-native'; // importo textInput desde react native utilizo Dimensions para poder tomar el ancho del dispositivo
-
+import { StyleSheet, Text, View, TextInput, Dimensions,Button ,TouchableHighlight , TouchableNativeFeedback, TouchableOpacity} from 'react-native'; // importo textInput desde react native utilizo Dimensions para poder tomar el ancho del dispositivo
+//TouchableNativeFeedback solo android 
+//TouchableOpacity
 const width = Dimensions.get('window').width // al get se le puede pasar window o screen se puede acceder a las propiedades width , heigth
 export default function App() {
   
   const[text,setText] = useState(' ')
+  const[submited,setSubmit] = useState(' ')
 
   return (
     //View nos permite mostrar los componentes mediante los children del mismo cambiar estados y manejar eventos como onPress 
     //No se pueden colocar otra cosa que no sean componentes dentro del View
     <View style={styles.container}>
-      <Text>Texto : {text}</Text>
+      <Text>Texto : {submited}</Text>
       <TextInput 
       style={styles.input} 
       placeholder='   Ingrese su texto aqui ' 
       onChangeText={t => setText(t)}
       defaultValue={text}
       />
+      <Button title='Aceptar' 
+      onPress={()=>{
+        setSubmit(text)
+        alert("Boton presionado correctamente")
+        }}
+      ></Button>
+      <TouchableHighlight 
+      underlayColor={'#999'} //cambia el color al momento de presionar
+      activeOpacity={0.2} //cambia la opacidad al momento de presionar
+      onPress={()=>{
+        setSubmit(text)
+        alert("Boton presionado correctamente")
+        }}
+      > 
+      <Text>Aceptar Higtligth</Text>
+      </TouchableHighlight>
+
+      <TouchableOpacity 
+      style={styles.TouchableOpacity}
+      onPress={()=>{    
+        setSubmit(text)
+        alert("Boton presionado correctamente")
+        }}
+      > 
+      <View style={styles.view}><Text>Aceptar Opacity</Text></View>
+      </TouchableOpacity>
+
+
+      <TouchableNativeFeedback 
+      backgroundColor={TouchableNativeFeedback.Ripple('#00f',true)} // esto lo que hace es de la colores con una animacion al presionar el boton
+      onPress={()=>{
+        setSubmit(text)
+        alert("Boton presionado correctamente")
+        }}
+      > 
+      <View style={styles.view}><Text>Aceptar Feedback</Text></View>
+      </TouchableNativeFeedback>
       
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  TouchableOpacity:{
+    backgroundColor : '#EEE'
+  },
+  view:{
+    flex : 0.2
+  },
   //campo siempre con estilo
   input:{
     height:40,

@@ -1,104 +1,60 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions,Button ,TouchableHighlight , TouchableNativeFeedback, TouchableOpacity ,ScrollView} from 'react-native'; // importo textInput desde react native utilizo Dimensions para poder tomar el ancho del dispositivo
-//TouchableNativeFeedback solo android 
-//TouchableOpacity
-const width = Dimensions.get('window').width // al get se le puede pasar window o screen se puede acceder a las propiedades width , heigth
+import { StyleSheet, Text, View,Button, FlatList} from 'react-native'; // FlashList permite crear listas
+
+
 export default function App() {
   
-  const[text,setText] = useState(' ')
-  const[submited,setSubmit] = useState(' ')
 
   return (
-    //View nos permite mostrar los componentes mediante los children del mismo cambiar estados y manejar eventos como onPress 
-    //No se pueden colocar otra cosa que no sean componentes dentro del View
     <View style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <Text>Texto : {submited}</Text>
-      <TextInput 
-      style={styles.input} 
-      placeholder='   Ingrese su texto aqui ' 
-      onChangeText={t => setText(t)}
-      defaultValue={text}
+      <FlatList //FLATlIST MEJOR QUE SCROLL VIEW AL MOMENTO DE RENDERIZAR ELEMENTOS 
+      // datos a renderizar 
+      data={[
+        { key: 1 , name : "Nicolas" },
+        { key: 2 , name : "Marito"},
+        { key: 3 , name : "Chanchito Triste"},
+        { key: 4 , name : "Chanchito feliz"},
+        { key: 5 , name : "Tortita con manteca "},
+        { key: 6 , name : "Nicolas" },
+        { key: 7 , name : "Marito"},
+        { key: 8 , name : "Chanchito Triste"},
+        { key: 9 , name : "Chanchito feliz"},
+        { key: 10 , name : "Tortita con manteca "},
+        { key: 11 , name : "Nicolas" },
+        { key: 12 , name : "Marito"},
+        { key: 13 , name : "Chanchito Triste"},
+        { key: 14 , name : "Chanchito feliz"},
+        { key: 15 , name : "Tortita con manteca "},
+      ]} 
+      renderItem={({item}) => <Text style ={styles.item}>{item.name}</Text>}// como se va a renderizar el contenido mostrado 
+      // renderItem recibe un objeto por ende al aplicar {} lo desestructuro quedandome con el tiem entonces imprimo mediante text
+      
       />
-      <Button title='Aceptar' 
-      onPress={()=>{
-        setSubmit(text)
-        alert("Boton presionado correctamente")
-        }}
-      ></Button>
-      </ScrollView>
- 
-
-
       
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  TouchableOpacity:{
-    backgroundColor : '#EEE'
-  },
-  view:{
-    flex : 0.2
-  },
-  //campo siempre con estilo
-  input:{
-    height:40,
-    width:'100%',
-    // backgroundColor:'#eee',
-    borderBottomColor:'#adc', // color de la linea inferior 
-    borderBottomWidth: 1, //tamaño
 
-
-  },
   container:{
     flex:1,
     backgroundColor:'#fff',
-    alignItems:'center',
+    alignItems:'stretch', // stretch ocupa todo el ancho de la pantalla
     justifyContent:'center',
+    paddingTop:22,
   },
-  scrollView:{
-    width:Dimensions.get('window').width,  // para poder usar el 100% del ancho de la pantalla paso este estilo 
-  }
+  item:{
+    padding:10,
+    fontSize:22,
+    height:50,
+    borderBottomColor:'#ccc',
+    borderBottomWidth: 1,
+    backgroundColor:'#E9E9E9',
+
+  },
+
 
 });
 
@@ -117,6 +73,7 @@ const styles = StyleSheet.create({
 //     //View nos permite mostrar los componentes mediante los children del mismo cambiar estados y manejar eventos como onPress 
 //     //No se pueden colocar otra cosa que no sean componentes dentro del View
 //     <View style={styles.container}>
+//       <ScrollView>
 //       <Text>Texto : {submited}</Text>
 //       <TextInput 
 //       style={styles.input} 
@@ -161,7 +118,7 @@ const styles = StyleSheet.create({
 //       > 
 //       <View style={styles.view}><Text>Aceptar Feedback</Text></View>
 //       </TouchableNativeFeedback>
-      
+//       </ScrollView>
 //     </View>
 //   );
 // }
@@ -188,10 +145,13 @@ const styles = StyleSheet.create({
 //     backgroundColor:'#fff',
 //     alignItems:'center',
 //     justifyContent:'center',
-//   }
+//   },
+// scrollView:{
+//   width:Dimensions.get('window').width,  // para poder usar el 100% del ancho de la pantalla paso este estilo 
+// }
 
 // });
-
+// -----------------------------------------------------------------------------------------------------------------------------------------------------
  //width:100, // para que utilice un ancho del 100% ancho disponible lo indico como texto. O tomar la dimension del dispositivo para pasarsela como ancho
 // {<View style={styles.container}>
 // <Texto style={styles.red}/>

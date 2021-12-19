@@ -1,38 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import React,{useEffect,useState} from 'react';
-import { StyleSheet, Text, View,Button, FlatList} from 'react-native'; // FlashList permite crear listas
+import React from 'react';
+import { StyleSheet, Image, View} from 'react-native';
 
 
 export default function App() {
-  const [users, setUsers] = useState([]);
-  const [loading,setLoading] = useState(true); // al ponerlo en true habilito el logo al momento de cargar la aplicacion
-  //useEffect se utiliza para cuando tengo que solicitar resultados de un recurso que puede retornar un error
- // el segundo elemento es un arreglo con las dependencias de useEfect
-  useEffect(()=>{
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json()) //lo primero se pasa la respuesta a json para poder trabajar con los datos  
-      .then(data => {
-        setUsers(data) // despues de haber sacalo la data la guardo en mi aplicacion y le quito la palabra cargando
-        setLoading(false)
-      })
-  },[]) 
-
-  if (loading){
-    return <View style={styles.center}><Text>Cargando...</Text></View>
-  }
   return (
     <View style={styles.container}>
-      <FlatList
-        data ={users} 
-        renderItem={({item})=><Text style={styles.item} >{item.name}</Text>}
-        keyExtractor={item => String(item.id)} // utilizo esta pripiedad para setear de manera manual las keys de los elementos 
-      
+      <Image
+        style={styles.photo}
+        // source={require('./assets/splash.png')} imprimir imagenes desde sistema de archivos 
+        source={{uri:'http://placekitten.com/200/200'}}
       />
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  photo:{
+    height:200,
+    width:200
+  },
 
   container:{
     flex:1,
@@ -40,26 +28,75 @@ const styles = StyleSheet.create({
     alignItems:'stretch', // stretch ocupa todo el ancho de la pantalla
     justifyContent:'center',
     paddingTop:22,
-  },
-  item:{
-    padding:10,
-    fontSize:22,
-    height:50,
-    borderBottomColor:'#ccc',
-    borderBottomWidth: 1,
-    backgroundColor:'#E9E9E9',
-
-  },
-  center:{
-    flex:1,
-    alignItems:'center',
-    justifyContent:'center'
-  },
-
+  }
 
 
 });
 
+//--- API consume y FlatList
+// import { StatusBar } from 'expo-status-bar';
+// import React,{useEffect,useState} from 'react';
+// import { StyleSheet, Text, View,Button, FlatList, ActivityIndicator} from 'react-native'; // FlashList permite crear listas
+
+
+// export default function App() {
+//   const [users, setUsers] = useState([]);
+//   const [loading,setLoading] = useState(true); // al ponerlo en true habilito el logo al momento de cargar la aplicacion
+//   //useEffect se utiliza para cuando tengo que solicitar resultados de un recurso que puede retornar un error
+//  // el segundo elemento es un arreglo con las dependencias de useEfect
+//   useEffect(()=>{
+//     fetch('https://jsonplaceholder.typicode.com/users')
+//       .then(response => response.json()) //lo primero se pasa la respuesta a json para poder trabajar con los datos  
+//       .then(data => {
+//         setUsers(data) // despues de haber sacalo la data la guardo en mi aplicacion y le quito la palabra cargando
+//         setLoading(false)
+//       })
+//   },[]) 
+
+//   if (loading){
+//     return <View style={styles.center}><Text>Cargando...</Text></View>
+//   }
+//   return (
+//     <View style={styles.container}>
+      // {/* Spiner para indicar que esta cargando la pantalla */}
+      // <ActivityIndicator 
+      //   size='large'
+      //   color='#0000ff'
+      // />
+//       <FlatList
+//         data ={users} 
+//         renderItem={({item})=><Text style={styles.item} >{item.name}</Text>}
+//         keyExtractor={item => String(item.id)} // utilizo esta pripiedad para setear de manera manual las keys de los elementos 
+      
+//       />
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+
+//   container:{
+//     flex:1,
+//     backgroundColor:'#fff',
+//     alignItems:'stretch', // stretch ocupa todo el ancho de la pantalla
+//     justifyContent:'center',
+//     paddingTop:22,
+//   },
+//   item:{
+//     padding:10,
+//     fontSize:22,
+//     height:50,
+//     borderBottomColor:'#ccc',
+//     borderBottomWidth: 1,
+//     backgroundColor:'#E9E9E9',
+
+//   },
+//   center:{
+//     flex:1,
+//     alignItems:'center',
+//     justifyContent:'center'
+//   },
+// });
 
 
 //---------- sections list

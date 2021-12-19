@@ -1,26 +1,41 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Image, View} from 'react-native';
+import React ,{useState} from 'react';
+import { StyleSheet, Modal, View ,Text, Button } from 'react-native';
 
 
 export default function App() {
+  const [modal,setModal] = useState(false)
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.photo}
-        // source={require('./assets/splash.png')} imprimir imagenes desde sistema de archivos 
-        source={{uri:'http://placekitten.com/200/200'}}
-      />
-
+      <Modal
+        animationType='slide' // animacion del componente
+        transparent={true} // si es transparente o no osea poder visualizar el contenido de atras mientras aparece el modal
+        // se ve util para trabajar con apis al momento de cargar formularios 
+        visible={modal} // si es visible o no mi componente
+        // onRequestClose={() =>{} } // ejecutar codigo despues de cerrado el modal
+      >
+          <View style={styles.center}>
+              <View style={styles.content}>
+                <Text>Soy un modal</Text>
+                <Button title='cerrar modal' onPress={()=> setModal(!modal)}/>
+              </View>
+          </View>
+      </Modal>
+      <Text> No soy el modal</Text>
+      <Text> No soy el modal</Text>
+      <Text> No soy el modal</Text>
+      <Text> No soy el modal</Text>
+      <Text> No soy el modal</Text>
+      <Text> No soy el modal</Text>
+      <Text> No soy el modal</Text>
+      <Text> No soy el modal</Text>
+      <Text> No soy el modal</Text>
+      <Button title='Abrir Modal' onPress={()=>{setModal(!modal)}}/>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  photo:{
-    height:200,
-    width:200
-  },
 
   container:{
     flex:1,
@@ -28,10 +43,60 @@ const styles = StyleSheet.create({
     alignItems:'stretch', // stretch ocupa todo el ancho de la pantalla
     justifyContent:'center',
     paddingTop:22,
+  },
+  center:{
+    flex:1,
+    alignItems:'stretch',
+    justifyContent:'center',
+    backgroundColor: 'rgba(0,0,0,0.3)'
+  },
+  content:{
+    backgroundColor:'#eee',
+    flex:1,
+    alignItems:'center',
+    justifyContent:'center',
+    margin:25
   }
 
 
 });
+
+//------- image component 
+// import { StatusBar } from 'expo-status-bar';
+// import React from 'react';
+// import { StyleSheet, Image, View} from 'react-native';
+
+
+// export default function App() {
+//   return (
+//     <View style={styles.container}>
+//       <Image
+//         style={styles.photo}
+//         // source={require('./assets/splash.png')} imprimir imagenes desde sistema de archivos 
+//         source={{uri:'http://placekitten.com/200/200'}}
+//       />
+
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   photo:{
+//     height:200,
+//     width:200
+//   },
+
+//   container:{
+//     flex:1,
+//     backgroundColor:'#fff',
+//     alignItems:'stretch', // stretch ocupa todo el ancho de la pantalla
+//     justifyContent:'center',
+//     paddingTop:22,
+//   }
+
+
+// });
+
 
 //--- API consume y FlatList
 // import { StatusBar } from 'expo-status-bar';
